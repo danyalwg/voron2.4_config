@@ -1,0 +1,57 @@
+#######################################################################
+#                    Input Shaper Calibration Guide                   #
+#######################################################################
+
+###############################
+# Step 1: Connect via SSH     #
+###############################
+
+1. Open a terminal on your computer.
+2. Connect to your Raspberry Pi using the following command:
+
+   ssh pi@mainsailos.local
+
+   Default Credentials:
+     - Username: pi
+     - Password: raspberry
+
+
+########################################
+# Step 2: Generate Calibration Plots   #
+########################################
+
+1. In the SSH terminal, run the following commands to generate the plots:
+
+   ~/klipper/scripts/calibrate_shaper.py /tmp/calibration_data_x_*.csv -o ~/shaper_calibrate_x.png
+   ~/klipper/scripts/calibrate_shaper.py /tmp/calibration_data_y_*.csv -o ~/shaper_calibrate_y.png
+
+   These commands will create two PNG files:
+     - shaper_calibrate_x.png
+     - shaper_calibrate_y.png
+
+
+##########################################
+# Step 3: Transfer Plots to Your Desktop #
+##########################################
+
+1. Open a new terminal on your computer.
+2. Use the following SCP commands to copy the plots to your desktop:
+
+   scp pi@mainsailos.local:~/shaper_calibrate_x.png C:\\Users\\danya\\Desktop
+   scp pi@mainsailos.local:~/shaper_calibrate_y.png C:\\Users\\danya\\Desktop
+
+
+#########################
+# Notes and Tips        #
+#########################
+
+1. Ensure your Raspberry Pi and computer are connected to the same network.
+2. If 'mainsailos.local' doesn’t work:
+     - Use the Raspberry Pi's IP address instead.
+     - Find it by running `hostname -I` on the Pi.
+3. The transferred plots will appear on your desktop as:
+     - shaper_calibrate_x.png
+     - shaper_calibrate_y.png
+4. Open these files with any image viewer to analyze the resonance data.
+
+#######################################################################
